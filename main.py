@@ -10,6 +10,7 @@ import subprocess
 
 
 from kivymd.uix.boxlayout import MDBoxLayout
+from manim import BLUE
 
 
 class FunctionDrawerApp(MDApp):
@@ -53,9 +54,11 @@ from manim import *
 class QuadraticFunction(Scene):
     def construct(self):
         ax = Axes(
-            x_range=[-10, 10, 1],
-            y_range=[-10, 10, 1],
-            axis_config={{"color": BLUE}},
+            x_range=[-5, 5, 1],
+            y_range=[-5, 5, 1],
+            axis_config={
+                {"color": BLUE, "include_numbers": True}
+            },
         )
         labels = ax.get_axis_labels(x_label="x", y_label="f(x)")
 
