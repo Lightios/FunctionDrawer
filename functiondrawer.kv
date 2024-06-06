@@ -1,0 +1,98 @@
+Screen:
+    RelativeLayout:
+        orientation: 'vertical'
+        pos_hint: {'x': 0.85, "center_y": 0.5}
+        size_hint: 0.1, 1
+
+        MDLabel:
+            text: "Postać funkcji:"
+            pos_hint: {'center_x': 0.5, 'center_y': 0.95}
+            halign: 'center'
+
+        MDFloatLayout:
+            Check:
+                pos_hint: {'center_x': .4, 'center_y': .9}
+                text: "Ogólna"
+                id: default_check
+            Check:
+                pos_hint: {'center_x': .4, 'center_y': .85}
+                text: "Kanoniczna"
+            Check:
+                pos_hint: {'center_x': .4, 'center_y': .8}
+                text: "Iloczynowa"
+
+        MDLabel:
+            text: app.form_text
+            pos_hint: {'center_x': 0.5, 'center_y': 0.75}
+            halign: 'center'
+
+        MDTextField:
+            id: f1
+            pos_hint: {'center_x': 0.5, 'center_y': 0.65}
+            size_hint_x: None
+            width: 300
+            write_tab: False
+
+            MDTextFieldHintText:
+                text: "Podaj parametr: a"
+
+        MDTextField:
+            id: f2
+            pos_hint: {'center_x': 0.5, 'center_y': 0.55}
+            size_hint_x: None
+            width: 300
+            write_tab: False
+
+            MDTextFieldHintText:
+                text: app.parameter_two
+
+        MDTextField:
+            id: f3
+            pos_hint: {'center_x': 0.5, 'center_y': 0.45}
+            size_hint_x: None
+            width: 300
+            write_tab: False
+
+            MDTextFieldHintText:
+                text: app.parameter_three
+
+
+        MDButton:
+            pos_hint: {'center_x': 0.5}
+            on_release: app.schedule_generate_animation()
+            pos_hint: {'center_x': 0.5, 'center_y': 0.35}
+
+            MDButtonText:
+                text: "Generuj Animację"
+
+        Image:
+            id: loading_circle
+            source: "media/loading_circle.gif"
+            pos_hint: {'center_x': 0.5, 'center_y': 0.2}
+            size_hint: None, None
+            size: 100, 100
+            anim_delay: 0.08
+            opacity: 0
+
+
+    Image:
+        id: video
+        source: "media/background.jpg"
+        pos_hint: {"x": 0.0, "center_y": 0.5}
+        size_hint: 0.8, 1
+        anim_delay: 0.05
+        anim_loop: 1
+        opacity: 0
+
+
+<Check>:
+    adaptive_height: True
+    MDCheckbox:
+        active: root.active
+        group: 'group'
+        size_hint: None, None
+        size: dp(48), dp(48)
+        on_active: app.on_form_select(root.text)
+    MDLabel:
+        text: root.text
+        padding_x: "12dp"
